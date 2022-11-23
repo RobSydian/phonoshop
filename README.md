@@ -68,3 +68,9 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+### What can you do on this app?
+
+This app allows you to find phones from a list. You can use the searchbar to specify what product you want to check out.
+Once you find a product that you want to learn more about, just click it and you'll navigate to its details page. Here, you'll be able to read all the product's specs and even select the color and storage capacity you want it with.
+After deciding how you want your product, you can add it to your shopping cart.
