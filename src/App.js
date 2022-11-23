@@ -1,18 +1,22 @@
 import { Route, Routes } from "react-router-dom";
-import MainLayout from "./components/layouts/MainLayout";
-import Homepage from "./components/pages/Homepage";
+import { ThemeProvider } from "styled-components";
+import HomePage from "./components/pages/HomePage";
 import ProductPage from "./components/pages/ProductPage";
+import GlobalStyle from "./styles/GlobalStyle";
+import StyledApp from "./styles/StyledApp";
+import theme from "./styles/themes/theme";
 
 function App() {
   return (
-    <div className="App">
-      <MainLayout>
+    <StyledApp>
+      <GlobalStyle />
+      <ThemeProvider theme={theme}>
         <Routes>
-          <Route path="/" element={<Homepage />} exact />
+          <Route path="/" element={<HomePage />} exact />
           <Route path="/product/:productId" element={<ProductPage />} />
         </Routes>
-      </MainLayout>
-    </div>
+      </ThemeProvider>
+    </StyledApp>
   );
 }
 
