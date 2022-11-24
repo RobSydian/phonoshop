@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const StyledMainLayout = styled.main`
-  /* height: 100vh; */
+  min-height: 100vh;
   padding-bottom: 4rem;
 
   background-color: ${(props) => props.theme.colors.secondary};
@@ -46,6 +46,12 @@ const StyledMainLayout = styled.main`
     text-decoration: none;
   }
 
+  button {
+    border-style: none;
+    border-radius: 0;
+    border-color: transparent;
+  }
+
   .cards-container {
     box-sizing: border-box;
     display: flex;
@@ -86,7 +92,7 @@ const StyledMainLayout = styled.main`
       align-items: center;
       flex-direction: row;
       width: 90%;
-      margin: 3rem auto;
+      margin: 2rem auto;
     }
 
     .searchInput {
