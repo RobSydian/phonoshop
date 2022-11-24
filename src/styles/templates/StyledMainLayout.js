@@ -23,6 +23,9 @@ const StyledMainLayout = styled.main`
   h1 {
     color: ${(props) => props.theme.colors.primary};
   }
+  a:visited {
+    color: inherit;
+  }
 
   .header {
     background-color: ${(props) => props.theme.colors.primary};

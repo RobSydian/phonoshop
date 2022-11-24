@@ -4,72 +4,147 @@ import StyledProductPage from "../../styles/pages/StyledProductPage";
 import ProductImage from "../UI/ProductImage";
 import RadioButton from "../UI/RadioButton";
 import Button from "../UI/Button";
+import { useEffect, useState } from "react";
+import { getProductById } from "../services/productsApi";
 
 export default function ProductPage() {
+  const [product, setProduct] = useState(null);
+
   const { productId } = useParams();
-  const imageUrl =
-    "https://images.unsplash.com/photo-1542744094-3a31f272c490?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80";
+
+  useEffect(() => {
+    console.log(productId);
+    if (productId) {
+      const setFetchedProduct = async () => {
+        const fetchedProduct = await getProductById(productId);
+        setProduct(fetchedProduct);
+      };
+      setFetchedProduct();
+    }
+  }, [productId]);
+
+  if (product !== null) {
+    console.log({ storages: product.storages });
+    console.log({ url: product.imgUrl });
+  }
   const productUrls = {
     route1: {
       url: "/",
       name: "Home",
     },
     route2: {
-      url: `/product/${productId}`,
-      name: "Name of product",
+      url: `/product/${product ? product.id : ""}`,
+      name: `${product ? product.model : ""}`,
     },
   };
   return (
     <MainLayout
-      title={`Product details: ${productId}`}
+      title={`Product details: ${product ? product.model : ""}`}
       urls={productUrls}
       backButton={true}
     >
-      <StyledProductPage>
-        <div className="image-col">
-          <ProductImage src={imageUrl} width="100%" height="400" />
-        </div>
-        <div className="product-content-col">
-          <section className="product-content-col--description">
-            <h1>Descripción</h1>
-            <p>Marca: </p>
-            <p>Modelo: </p>
-            <p>Precio: </p>
-            <p>CPU: </p>
-            <p>RAM: </p>
-            <p>Sistema Operativo: </p>
-            <p>Resolucion de pantalla: </p>
-            <p>Bateria: </p>
-            <p>Camaras: </p>
-            <p>Dimensiones: </p>
-            <p>Peso: </p>
-          </section>
-          <section className="product-content-col--actions">
-            <h1>Selección</h1>
-            <form className="form">
-              <h3>Almacenamiento</h3>
-              <div className="form--radio-group">
-                <RadioButton id="60GB" name="storage" value="" />
-                <RadioButton id="120GB" name="storage" value="" />
-                <RadioButton id="250GB" name="storage" value="" />
-              </div>
-              <h3>Color</h3>
-              <div className="form--radio-group">
-                <RadioButton id="Azul" name="color" value="" />
-                <RadioButton id="Plata" name="color" value="" />
-                <RadioButton id="Negro" name="color" value="" />
-              </div>
-              <div className="form--buttons">
-                <Button
-                  type="submit"
-                  classType="success"
-                  text="Añadir a Carrito"
-                />
-              </div>
-            </form>
-          </section>
-        </div>
-      </StyledProductPage>
+      {product !== "undefined" ? (
+        <StyledProductPage>
+          <div className="image-col">
+            <ProductImage src={product?.imgUrl} width="300" height="400" />
+          </div>
+          <div className="product-content-col">
+            <section className="product-content-col--description">
+              <h1>Description</h1>
+              {product?.brand && <p>Brand: {product.brand}</p>}
+              {product?.model && <p>Model: {product.model}</p>}
+              {product?.price && <p>Price: {product.price}</p>}
+              {product?.cpu && <p>CPU: {product.cpu}</p>}
+              {product?.ram && <p>RAM: {product.ram}</p>}
+              {product?.os && <p>OS: {product.os}</p>}
+              {product?.displayResolution && (
+                <p>Display Resolution: {product.displayResolution}</p>
+              )}
+              {product?.battery && <p>Battery: {product.battery}</p>}
+              {product?.primaryCamera && (
+                <p>
+                  Primary Camera:&nbsp;
+                  <span>
+                    {Array.isArray(product.primaryCamera)
+                      ? product.primaryCamera.join(" / ")
+                      : product.primaryCamera}
+                  </span>
+                </p>
+              )}
+              {product?.secondaryCamera && (
+                <p>
+                  Secondary Camera:&nbsp;
+                  <span>
+                    {Array.isArray(product.secondaryCamera)
+                      ? product.secondaryCmera.join(" / ")
+                      : product.secondaryCmera}
+                  </span>
+                </p>
+              )}
+              {product?.dimentions && <p>Dimensions: {product.dimentions}</p>}
+              {product?.weight && <p>Weight: {product.weight}g</p>}
+            </section>
+            <section className="product-content-col--actions">
+              <h1>Selection</h1>
+              <form className="form">
+                <h3>Storage</h3>
+                <div className="form--radio-group">
+                  {product?.options?.storages?.map((storage, index, array) => {
+                    if (array.length === 1) {
+                      return (
+                        <RadioButton
+                          id={storage.name}
+                          name="storage"
+                          value={storage.code}
+                          checkValue={true}
+                        />
+                      );
+                    }
+                    return (
+                      <RadioButton
+                        id={storage.name}
+                        name="storage"
+                        value={storage.code}
+                      />
+                    );
+                  })}
+                </div>
+                <h3>Color</h3>
+                <div className="form--radio-group">
+                  {product?.options?.colors?.map((color, index, array) => {
+                    if (array.length === 1) {
+                      return (
+                        <RadioButton
+                          id={color.name}
+                          name="color"
+                          value={color.code}
+                          checkValue={true}
+                        />
+                      );
+                    }
+                    return (
+                      <RadioButton
+                        id={color.name}
+                        name="color"
+                        value={color.code}
+                      />
+                    );
+                  })}
+                </div>
+                <div className="form--buttons">
+                  <Button
+                    type="submit"
+                    classType="success"
+                    text="Añadir a Carrito"
+                  />
+                </div>
+              </form>
+            </section>
+          </div>
+        </StyledProductPage>
+      ) : (
+        <p>Loading...</p>
+      )}
     </MainLayout>
   );
 }

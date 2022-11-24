@@ -21,4 +21,12 @@ export const getAllProducts = async () => {
 
 //prepare function to getProductById
 
+export const getProductById = async (id) => {
+  const response = await fetch(`${baseUrl}/api/product/${id}`);
+  const responseData = await response.json();
+  console.log({ responseData });
+  return responseData;
+};
+
 //prepare function to addToCart
+const addToCart = () => {};

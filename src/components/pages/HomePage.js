@@ -31,6 +31,7 @@ export default function Homepage() {
         {productsList.length ? (
           productsList.map((product) => (
             <ProductCard
+              key={product.id}
               productLink={`/product/${product.id}`}
               brand={product.brand}
               model={product.model}

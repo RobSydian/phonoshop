@@ -1,6 +1,7 @@
 import StyledHeader from "../styles/StyledHeader";
 import CartIcon from "./UI/CartIcon";
 import CustomBreadcrumbs from "./UI/CustomBreadcrumbs";
+import { Link } from "react-router-dom";
 
 export default function Header({ breadcrumbUrls }) {
   // console.log(breadcrumbUrls);
@@ -9,7 +10,9 @@ export default function Header({ breadcrumbUrls }) {
       <header className="header">
         <div className="header--main-content">
           <div className="header--logo">
-            <div>PHONOSHOP</div>
+            <div>
+              <Link to="/">PHONOSHOP</Link>
+            </div>
           </div>
           <CartIcon />
         </div>
