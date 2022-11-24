@@ -22,11 +22,14 @@ export const getAllProducts = async () => {
 //prepare function to getProductById
 
 export const getProductById = async (id) => {
-  const response = await fetch(`${baseUrl}/api/product/${id}`);
-  const responseData = await response.json();
-  console.log({ responseData });
-  return responseData;
+  try {
+    const response = await fetch(`${baseUrl}/api/product/${id}`);
+    const responseData = await response.json();
+    return responseData;
+  } catch (error) {
+    throw Error(error.message);
+  }
 };
 
 //prepare function to addToCart
-const addToCart = () => {};
+// const addToCart = () => {};

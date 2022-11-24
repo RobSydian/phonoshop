@@ -1,6 +1,13 @@
 import StyledRadioButton from "../../styles/UI/StyledRadioButton";
 
-export default function RadioButton({ id, name, value, checkValue = false }) {
+export default function RadioButton({
+  id,
+  name,
+  value,
+  checked,
+  inputRef,
+  onClickFn,
+}) {
   return (
     <StyledRadioButton>
       <input
@@ -8,7 +15,8 @@ export default function RadioButton({ id, name, value, checkValue = false }) {
         type="radio"
         name={name}
         value={value}
-        checked={checkValue}
+        checked={checked}
+        onClick={() => onClickFn(value)}
       />
       <label htmlFor={id}>{id}</label>
     </StyledRadioButton>

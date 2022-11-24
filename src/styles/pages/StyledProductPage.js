@@ -40,7 +40,7 @@ const StyledProductPage = styled.div`
   .form--radio-group {
     padding: 1rem;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: flex-start;
   }
 
   .form--buttons {

@@ -6,27 +6,27 @@ import RadioButton from "../UI/RadioButton";
 import Button from "../UI/Button";
 import { useEffect, useState } from "react";
 import { getProductById } from "../services/productsApi";
+import ProductDetailsForm from "../ProductDetailsForm";
 
 export default function ProductPage() {
-  const [product, setProduct] = useState(null);
+  const [product, setProduct] = useState();
+  // const [error, setError] = useState();
 
   const { productId } = useParams();
 
   useEffect(() => {
-    console.log(productId);
-    if (productId) {
-      const setFetchedProduct = async () => {
-        const fetchedProduct = await getProductById(productId);
-        setProduct(fetchedProduct);
-      };
-      setFetchedProduct();
-    }
+    (async () => {
+      try {
+        if (productId) {
+          const fetchedProduct = await getProductById(productId);
+          setProduct(fetchedProduct);
+        }
+      } catch (e) {
+        console.error("You got errors");
+      }
+    })();
   }, [productId]);
 
-  if (product !== null) {
-    console.log({ storages: product.storages });
-    console.log({ url: product.imgUrl });
-  }
   const productUrls = {
     route1: {
       url: "/",
@@ -86,59 +86,7 @@ export default function ProductPage() {
             </section>
             <section className="product-content-col--actions">
               <h1>Selection</h1>
-              <form className="form">
-                <h3>Storage</h3>
-                <div className="form--radio-group">
-                  {product?.options?.storages?.map((storage, index, array) => {
-                    if (array.length === 1) {
-                      return (
-                        <RadioButton
-                          id={storage.name}
-                          name="storage"
-                          value={storage.code}
-                          checkValue={true}
-                        />
-                      );
-                    }
-                    return (
-                      <RadioButton
-                        id={storage.name}
-                        name="storage"
-                        value={storage.code}
-                      />
-                    );
-                  })}
-                </div>
-                <h3>Color</h3>
-                <div className="form--radio-group">
-                  {product?.options?.colors?.map((color, index, array) => {
-                    if (array.length === 1) {
-                      return (
-                        <RadioButton
-                          id={color.name}
-                          name="color"
-                          value={color.code}
-                          checkValue={true}
-                        />
-                      );
-                    }
-                    return (
-                      <RadioButton
-                        id={color.name}
-                        name="color"
-                        value={color.code}
-                      />
-                    );
-                  })}
-                </div>
-                <div className="form--buttons">
-                  <Button
-                    type="submit"
-                    classType="success"
-                    text="Añadir a Carrito"
-                  />
-                </div>
-              </form>
+              <ProductDetailsForm product={product} />
             </section>
           </div>
         </StyledProductPage>
