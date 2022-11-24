@@ -3,7 +3,7 @@ import CartIcon from "./UI/CartIcon";
 import CustomBreadcrumbs from "./UI/CustomBreadcrumbs";
 
 export default function Header({ breadcrumbUrls }) {
-  console.log(breadcrumbUrls);
+  // console.log(breadcrumbUrls);
   return (
     <StyledHeader>
       <header className="header">

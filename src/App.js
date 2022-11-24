@@ -8,7 +8,6 @@ import theme from "./styles/themes/theme";
 
 function App() {
   return (
-    // <StyledApp>
     <>
       <GlobalStyle />
       <ThemeProvider theme={theme}>
@@ -18,7 +17,6 @@ function App() {
         </Routes>
       </ThemeProvider>
     </>
-    // </StyledApp>
   );
 }
 

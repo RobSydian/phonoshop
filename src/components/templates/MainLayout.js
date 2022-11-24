@@ -7,7 +7,7 @@ export default function MainLayout({
   urls,
   hasSearchBar = false,
 }) {
-  console.log(urls);
+  // console.log(urls);
   return (
     <StyledMainLayout>
       <Header breadcrumbUrls={urls} />
