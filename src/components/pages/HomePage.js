@@ -10,22 +10,14 @@ export default function Homepage() {
     },
   };
   return (
-    <MainLayout title="Home page" urls={homeUrl}>
-      {/* <ul>
-        <li>
-          <Link to="product/1">Link1</Link>
-        </li>
-        <li>
-          <Link to="product/2">Link2</Link>
-        </li>
-        <li>
-          <Link to="product/3">Link3</Link>
-        </li>
-        <li>
-          <Link to="product/4">Link4</Link>
-        </li>
-      </ul> */}
-      <ProductCard productLink="/product/1" />
+    <MainLayout title="Products List" urls={homeUrl} hasSearchBar={true}>
+      <div className="cards-container">
+        <ProductCard productLink="/product/1" />
+        <ProductCard productLink="/product/2" />
+        <ProductCard productLink="/product/3" />
+        <ProductCard productLink="/product/4" />
+        <ProductCard productLink="/product/5" />
+      </div>
     </MainLayout>
   );
 }

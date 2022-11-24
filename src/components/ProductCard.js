@@ -8,12 +8,12 @@ export default function ProductCard({ productLink }) {
   return (
     <StyledProductCard>
       <Link to={productLink}>
-        <div class="card">
-          <ProductImage src={imageUrl} />
-          <div class="container">
-            <h1>Marca</h1>
-            <h2>Modelo</h2>
-            <h2>Precio</h2>
+        <div className="card">
+          <ProductImage src={imageUrl} width="100%" height="250" />
+          <div className="card--content">
+            <h1 className="card--content--brand">Marca</h1>
+            <h2 className="card--content--model">Modelo</h2>
+            <h2 className="card--content--price">600€</h2>
           </div>
         </div>
       </Link>
