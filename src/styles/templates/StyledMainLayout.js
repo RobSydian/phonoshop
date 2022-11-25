@@ -30,7 +30,7 @@ const StyledMainLayout = styled.main`
   .header {
     background-color: ${(props) => props.theme.colors.primary};
     min-height: 5rem;
-    padding: 1rem;
+    padding: 1rem 1rem 0.5rem 1rem;
   }
 
   a:link {

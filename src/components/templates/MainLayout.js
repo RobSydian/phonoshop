@@ -12,7 +12,6 @@ export default function MainLayout({
   const inputRef = useRef();
   const inputOnChange = () => {
     delayAction(inputRef.current.value, searchBarInputFn);
-    // searchBarInputFn(userInput);
   };
   const [timer, setTimer] = useState(null);
 
