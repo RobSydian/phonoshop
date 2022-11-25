@@ -86,7 +86,7 @@ const StyledMainLayout = styled.main`
       width: 90%;
       margin: auto;
       justify-content: space-between;
-      gap: 1em;
+      gap: 1em 2rem;
     }
 
     .titleArea {

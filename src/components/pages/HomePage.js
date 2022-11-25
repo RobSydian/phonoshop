@@ -36,6 +36,7 @@ export default function Homepage() {
             <ProductCard
               key={product.id}
               productLink={`/product/${product.id}`}
+              image={product.imgUrl}
               brand={product.brand}
               model={product.model}
               price={product.price}
