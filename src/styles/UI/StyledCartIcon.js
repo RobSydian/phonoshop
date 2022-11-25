@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 const StyledCartIcon = styled.div`
   display: flex;
+  margin: 1rem;
 
   .cart-badge {
     position: relative;

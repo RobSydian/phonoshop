@@ -4,7 +4,6 @@ import CustomBreadcrumbs from "./UI/CustomBreadcrumbs";
 import { Link } from "react-router-dom";
 
 export default function Header({ breadcrumbUrls }) {
-  // console.log(breadcrumbUrls);
   return (
     <StyledHeader>
       <header className="header">

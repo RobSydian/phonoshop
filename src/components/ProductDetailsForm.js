@@ -56,7 +56,7 @@ export default function ProductDetailsForm({ product }) {
         ))}
       </div>
       <div className="form--buttons">
-        <Button type="submit" classType="success" text="Añadir a Carrito" />
+        <Button type="submit" classType="success" text="Add to Cart" />
       </div>
     </form>
   );

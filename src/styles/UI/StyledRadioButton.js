@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const StyledRadioButton = styled.div`
   input {
-    margin-right: 0.5rem;
+    margin: 0.5rem;
   }
 `;
 
