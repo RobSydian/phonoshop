@@ -1,3 +1,4 @@
+/* eslint-disable react/react-in-jsx-scope */
 import { Route, Routes } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import HomePage from "./components/pages/HomePage";
