@@ -1,51 +1,40 @@
-import React, { useState } from "react";
-import { getAllProducts } from "../components/services/productsApi";
+import React, { useEffect, useState } from "react";
+
 const PurchaseContext = React.createContext({
-  counter: 0,
+  itemsInCart: [],
   products: [],
-  storeProducts: (products) => {},
-  updateCounter: () => {},
+  cacheProducts: (products) => {},
+  addItemToCart: () => {},
 });
 
 export const PurchaseContextProvider = (props) => {
-  const [counter, setCounter] = useState(0);
-  const [fetchedProducts, setFetchedProducts] = useState(0);
+  const [cartItems, setCartItems] = useState([]);
 
-  const updateCounterHandler = () => {
-    //localStorage work
-    setCounter(counter + 1);
-  };
-  const newProducts = [];
-  const setNewProductsToLocalStorage = (products) => {
-    newProducts.push(JSON.stringify(products));
-    localStorage.setItem("productsList", newProducts);
-    console.log("localstorage productsList created");
-    console.log({ newProducts });
-  };
-
-  const getProductsList = async () => {
-    return await JSON.parse(localStorage.getItem("productsList"));
-  };
-  const storeProductsHandler = async () => {
-    const fetchedProducts = await getAllProducts();
-    const items = await getProductsList();
-    if (!items) {
-      setNewProductsToLocalStorage(fetchedProducts);
-      setFetchedProducts(newProducts);
-      storeProductsHandler();
-    } else {
-      setFetchedProducts(items);
+  useEffect(() => {
+    const cachedItems = JSON.parse(localStorage.getItem("itemsInCart"));
+    if (cachedItems) {
+      setCartItems(cachedItems);
     }
-    PurchaseContext.products = fetchedProducts;
+  }, []);
+
+  const addItemToCart = (item) => {
+    const allItems = [...cartItems, item];
+    setCartItems(allItems);
+    PurchaseContext.itemsInCart = allItems;
+    localStorage.setItem("itemsInCart", JSON.stringify(allItems));
+  };
+
+  const cacheProducts = async (products) => {
+    localStorage.setItem("productsList", JSON.stringify(products));
+    PurchaseContext.products = products;
   };
 
   return (
     <PurchaseContext.Provider
       value={{
-        counter: counter,
-        products: fetchedProducts,
-        storeProducts: storeProductsHandler,
-        updateCounter: updateCounterHandler,
+        itemsInCart: cartItems,
+        cacheProducts,
+        addItemToCart,
       }}
     >
       {props.children}

@@ -1,10 +1,13 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import PurchaseContext from "../store/purchase-context";
+import { addToCart } from "./services/productsApi";
 import Button from "./UI/Button";
 import RadioButton from "./UI/RadioButton";
 
 export default function ProductDetailsForm({ product }) {
   const [selectedColor, setSelectedColor] = useState();
   const [selectedStorage, setSelectedStorage] = useState();
+  const context = useContext(PurchaseContext);
 
   useEffect(() => {
     if (product) {
@@ -13,13 +16,15 @@ export default function ProductDetailsForm({ product }) {
     }
   }, [product]);
 
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
-    console.log({
+    const item = {
       id: product.id,
       colorCode: selectedColor,
       storageCode: selectedStorage,
-    });
+    };
+    await addToCart(item);
+    context.addItemToCart(item);
   };
 
   return (

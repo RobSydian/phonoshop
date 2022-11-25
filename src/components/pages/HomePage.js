@@ -2,21 +2,24 @@ import ProductCard from "../ProductCard";
 import MainLayout from "../templates/MainLayout";
 import { useContext, useEffect, useState } from "react";
 import PurchaseContext from "../../store/purchase-context";
+import { getAllProducts } from "../services/productsApi";
 
 export default function Homepage() {
   const [productsList, setProductsList] = useState([]);
-  const ctx = useContext(PurchaseContext);
+  const context = useContext(PurchaseContext);
 
   useEffect(() => {
-    Promise.all([ctx.storeProducts()]);
+    (async () => {
+      const cachedProducts = JSON.parse(localStorage.getItem("productsList"));
+      if (cachedProducts) {
+        setProductsList(cachedProducts);
+      } else {
+        const products = await getAllProducts();
+        setProductsList(products);
+        context.cacheProducts(products);
+      }
+    })();
   });
-
-  useEffect(() => {
-    const finalList = ctx.products;
-    if (finalList.length) {
-      setProductsList(finalList);
-    }
-  }, [ctx, productsList]);
 
   const homeUrl = {
     route1: {

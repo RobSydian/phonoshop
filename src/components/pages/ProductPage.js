@@ -2,8 +2,6 @@ import { useParams } from "react-router-dom";
 import MainLayout from "../templates/MainLayout";
 import StyledProductPage from "../../styles/pages/StyledProductPage";
 import ProductImage from "../UI/ProductImage";
-import RadioButton from "../UI/RadioButton";
-import Button from "../UI/Button";
 import { useEffect, useState } from "react";
 import { getProductById } from "../services/productsApi";
 import ProductDetailsForm from "../ProductDetailsForm";

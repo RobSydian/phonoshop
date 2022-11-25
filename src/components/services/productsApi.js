@@ -1,7 +1,7 @@
-const baseUrl = "https://front-test-api.herokuapp.com";
+const baseUrl = "https://front-test-api.herokuapp.com/api";
 
 export const getAllProducts = async () => {
-  const response = await fetch(`${baseUrl}/api/product`);
+  const response = await fetch(`${baseUrl}/product`);
   const responseData = await response.json();
 
   const loadedProducts = [];
@@ -23,7 +23,7 @@ export const getAllProducts = async () => {
 
 export const getProductById = async (id) => {
   try {
-    const response = await fetch(`${baseUrl}/api/product/${id}`);
+    const response = await fetch(`${baseUrl}/product/${id}`);
     const responseData = await response.json();
     return responseData;
   } catch (error) {
@@ -32,4 +32,12 @@ export const getProductById = async (id) => {
 };
 
 //prepare function to addToCart
-// const addToCart = () => {};
+export const addToCart = async (product) => {
+  await fetch(`${baseUrl}/cart`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(product),
+  });
+};
