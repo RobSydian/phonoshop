@@ -1,9 +1,10 @@
+import React from "react";
 import StyledSearchBar from "../../styles/UI/StyledSearchBar";
 
-export default function SearchBar() {
+export default function SearchBar({ type, placeholder }) {
   return (
     <StyledSearchBar>
-      <input type="input">SearchBar</input>
+      <input type={type} placeholder={placeholder} />
     </StyledSearchBar>
   );
 }

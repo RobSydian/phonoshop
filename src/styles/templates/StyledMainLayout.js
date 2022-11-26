@@ -79,6 +79,14 @@ const StyledMainLayout = styled.main`
     padding: 12px 20px;
     box-sizing: border-box;
     font-size: 1rem;
+    border-radius: 5px;
+    border: none;
+    appearance: none;
+  }
+
+  .searchInput:focus {
+    border-radius: 5px;
+    border: 1px solid ${(props) => props.theme.colors.primary};
   }
 
   @media (min-width: 600px) {

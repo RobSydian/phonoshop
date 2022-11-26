@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import StyledMainLayout from "../../styles/templates/StyledMainLayout";
 import Header from "../Header";
 
@@ -35,7 +35,8 @@ export default function MainLayout({
         {hasSearchBar && (
           <input
             className="searchInput"
-            type="input"
+            type="text"
+            placeholder="Example: Liquid, Alcatel..."
             ref={inputRef}
             onChange={inputOnChange}
           />
