@@ -10,6 +10,7 @@ const StyledHeader = styled.div`
     justify-content: space-between;
     align-items: center;
     height: 3rem;
+    padding-right: 0.5rem;
   }
   .header--logo {
     color: ${(props) => props.theme.colors.secondary};

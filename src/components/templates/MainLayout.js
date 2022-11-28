@@ -1,6 +1,8 @@
 import React, { useRef, useState } from "react";
 import StyledMainLayout from "../../styles/templates/StyledMainLayout";
 import Header from "../Header";
+import { AiFillCaretLeft } from "react-icons/ai";
+import { Link } from "react-router-dom";
 
 export default function MainLayout({
   children,
@@ -8,6 +10,7 @@ export default function MainLayout({
   urls,
   hasSearchBar = false,
   searchBarInputFn,
+  hasBackButton = false,
 }) {
   const inputRef = useRef();
   const inputOnChange = () => {
@@ -27,11 +30,20 @@ export default function MainLayout({
     );
   }
 
+  const backButton = hasBackButton ? (
+    <Link to="/">
+      <AiFillCaretLeft className="back-button" />
+    </Link>
+  ) : null;
+
   return (
     <StyledMainLayout>
       <Header breadcrumbUrls={urls} />
       <div className="titleArea">
-        <h1>{title}</h1>
+        <h1>
+          {backButton}
+          {title}
+        </h1>
         {hasSearchBar && (
           <input
             className="searchInput"

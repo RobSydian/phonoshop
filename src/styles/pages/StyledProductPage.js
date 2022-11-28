@@ -59,6 +59,7 @@ const StyledProductPage = styled.div`
     display: flex;
     justify-content: center;
     gap: 9rem;
+
     .product-content-col--description,
     .product-content-col--actions {
       background-color: ${(props) => props.theme.colors.tertiary};

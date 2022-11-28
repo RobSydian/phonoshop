@@ -41,6 +41,7 @@ export default function ProductPage() {
       title={`Product details: ${product ? product.model : ""}`}
       urls={productUrls}
       backButton={true}
+      hasBackButton={true}
     >
       {product !== "undefined" ? (
         <StyledProductPage>

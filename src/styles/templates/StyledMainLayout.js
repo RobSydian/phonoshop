@@ -33,6 +33,11 @@ const StyledMainLayout = styled.main`
     padding: 1rem 1rem 0.5rem 1rem;
   }
 
+  .back-button {
+    vertical-align: middle;
+    margin: 0 0 0.2rem 0;
+  }
+
   a:link {
     text-decoration: none;
   }
